@@ -1,0 +1,30 @@
+<div id="commandes-list" class="data-table-wrapper">
+    {% if commandes %}
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>N° BC</th>
+                <th>Fournisseur</th>
+                <th>Montant</th>
+                <th>Statut</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in commandes %}
+            <tr>
+                <td><strong>{{ c.numero }}</strong></td>
+                <td>{{ c.fournisseur.nom if c.fournisseur else "—" }}</td>
+                <td>{{ "%.2f"|format(c.montant_total) }} €</td>
+                <td><span class="statut-badge statut-{{ c.statut.value if c.statut else 'BROUILLON' }}">{{ c.statut.value if c.statut else 'BROUILLON' }}</span></td>
+                <td class="muted">{{ c.created_at.strftime("%d/%m/%Y %H:%M") if c.created_at else "—" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        Aucun bon de commande pour l'instant.
+    </div>
+    {% endif %}
+</div>

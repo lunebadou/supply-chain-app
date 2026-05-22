@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Accueil — Omnia Supply Chain{% endblock %}
+
+{% block content %}
+    <h1>Module Achat</h1>
+    <p class="page-subtitle">Gestion des fournisseurs, articles et bons de commande.</p>
+
+    <div class="home-grid">
+        <a href="/ui/fournisseurs" class="home-card">
+            <div class="home-card-icon">🏢</div>
+            <div class="home-card-title">Fournisseurs</div>
+            <div class="home-card-desc">
+                Gérer la liste des fournisseurs référencés et leurs coordonnées.
+            </div>
+            <div class="home-card-count">{{ counts.fournisseurs }} fournisseur(s)</div>
+        </a>
+
+        <a href="/ui/articles" class="home-card">
+            <div class="home-card-icon">📦</div>
+            <div class="home-card-title">Articles</div>
+            <div class="home-card-desc">
+                Référencer les articles achetables et suivre les niveaux de stock.
+            </div>
+            <div class="home-card-count">{{ counts.articles }} article(s)</div>
+        </a>
+
+        <a href="/ui/commandes" class="home-card">
+            <div class="home-card-icon">📋</div>
+            <div class="home-card-title">Bons de commande</div>
+            <div class="home-card-desc">
+                Créer, valider, réceptionner et facturer les bons de commande.
+            </div>
+            <div class="home-card-count">{{ counts.commandes }} commande(s)</div>
+        </a>
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environnement virtuel (si jamais)
+venv/
+.venv/
+env/
+
+# Variables d'environnement (contient potentiellement des secrets)
+.env
+.env.local
+
+# Base de données locale
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build / Distribution
+build/
+dist/
+*.egg-info/
+
+# Docker volumes locaux éventuels
+pgdata_*/

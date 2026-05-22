@@ -1,0 +1,28 @@
+<div id="fournisseurs-list" class="data-table-wrapper">
+    {% if fournisseurs %}
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for f in fournisseurs %}
+            <tr>
+                <td class="muted">#{{ f.id }}</td>
+                <td><strong>{{ f.nom }}</strong></td>
+                <td>{{ f.email }}</td>
+                <td>{{ f.telephone or "—" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        Aucun fournisseur pour l'instant. Créez le premier avec le formulaire à gauche.
+    </div>
+    {% endif %}
+</div>

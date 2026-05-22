@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Omnia Supply Chain{% endblock %}</title>
+    <script src="https://unpkg.com/htmx.org@2.0.3"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="brand">
+            <span class="logo">omnia</span>
+            <span class="brand-sub">Supply Chain — Module Achat</span>
+        </div>
+        <nav class="nav">
+            <a href="/ui">Accueil</a>
+            <a href="/ui/fournisseurs">Fournisseurs</a>
+            <a href="/ui/articles">Articles</a>
+            <a href="/ui/commandes">Commandes</a>
+        </nav>
+        <div class="env-badge env-{{ env }}">{{ env|upper }}</div>
+    </header>
+
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        Omnia Supply Chain — environnement {{ env }}
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Fournisseurs — Omnia Supply Chain{% endblock %}
+
+{% block content %}
+    <h1>Fournisseurs</h1>
+    <p class="page-subtitle">Référencement des fournisseurs et de leurs coordonnées.</p>
+
+    <div class="two-cols">
+        <section class="card-section">
+            <h2 class="section-title">Nouveau fournisseur</h2>
+            <form class="form"
+                  hx-post="/ui/fournisseurs"
+                  hx-target="#fournisseurs-list"
+                  hx-swap="outerHTML"
+                  hx-on::after-request="if(event.detail.successful) this.reset()">
+
+                <div class="form-row">
+                    <label>Nom *</label>
+                    <input type="text" name="nom" required placeholder="Ex: Papeterie Lyon SARL">
+                </div>
+
+                <div class="form-row">
+                    <label>Email *</label>
+                    <input type="email" name="email" required placeholder="contact@exemple.fr">
+                </div>
+
+                <div class="form-row">
+                    <label>Téléphone</label>
+                    <input type="text" name="telephone" placeholder="+33 4 78 ...">
+                </div>
+
+                <div class="form-row">
+                    <label>Adresse</label>
+                    <textarea name="adresse" rows="2" placeholder="Adresse complète"></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">Créer le fournisseur</button>
+            </form>
+        </section>
+
+        <section class="card-section">
+            <h2 class="section-title">Liste des fournisseurs</h2>
+            {% include "_fournisseurs_table.html" %}
+        </section>
+    </div>
+{% endblock %}

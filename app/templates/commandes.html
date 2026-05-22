@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Commandes — Omnia Supply Chain{% endblock %}
+
+{% block content %}
+    <h1>Bons de commande</h1>
+    <p class="page-subtitle">Création et suivi des bons de commande fournisseurs.</p>
+
+    <div class="two-cols">
+        <section class="card-section">
+            <h2 class="section-title">Nouveau bon de commande</h2>
+
+            {% if not fournisseurs or not articles %}
+            <div class="empty-state">
+                Pour créer un bon de commande, vous devez d'abord avoir au moins
+                <strong>un fournisseur</strong> et <strong>un article</strong>.
+            </div>
+            {% else %}
+            <form class="form"
+                  hx-post="/ui/commandes"
+                  hx-target="#commandes-list"
+                  hx-swap="outerHTML"
+                  hx-on::after-request="if(event.detail.successful) this.reset()">
+
+                <div class="form-row">
+                    <label>Fournisseur *</label>
+                    <select name="fournisseur_id" required>
+                        <option value="">— Sélectionner —</option>
+                        {% for f in fournisseurs %}
+                        <option value="{{ f.id }}">{{ f.nom }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label>Article *</label>
+                    <select name="article_id" required>
+                        <option value="">— Sélectionner —</option>
+                        {% for a in articles %}
+                        <option value="{{ a.id }}" data-prix="{{ a.prix_unitaire }}">
+                            {{ a.reference }} — {{ a.designation }} ({{ "%.2f"|format(a.prix_unitaire) }} €)
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label>Quantité *</label>
+                    <input type="number" name="quantite" required min="1" value="1">
+                </div>
+
+                <div class="form-row">
+                    <label>Prix unitaire (€) *</label>
+                    <input type="number" name="prix_unitaire" required min="0" step="0.01" placeholder="4.99">
+                </div>
+
+                <button type="submit" class="btn-primary">Créer le bon de commande</button>
+            </form>
+
+            <script>
+                // Auto-remplit le prix unitaire quand on choisit un article
+                document.querySelector('select[name="article_id"]').addEventListener('change', function(e) {
+                    const prix = e.target.selectedOptions[0]?.dataset.prix;
+                    if (prix) {
+                        document.querySelector('input[name="prix_unitaire"]').value = prix;
+                    }
+                });
+            </script>
+            {% endif %}
+        </section>
+
+        <section class="card-section">
+            <h2 class="section-title">Bons de commande émis</h2>
+            {% include "_commandes_table.html" %}
+        </section>
+    </div>
+{% endblock %}

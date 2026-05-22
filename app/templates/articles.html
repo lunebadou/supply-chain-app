@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Articles — Omnia Supply Chain{% endblock %}
+
+{% block content %}
+    <h1>Articles</h1>
+    <p class="page-subtitle">Catalogue des articles achetables et niveaux de stock.</p>
+
+    <div class="two-cols">
+        <section class="card-section">
+            <h2 class="section-title">Nouvel article</h2>
+            <form class="form"
+                  hx-post="/ui/articles"
+                  hx-target="#articles-list"
+                  hx-swap="outerHTML"
+                  hx-on::after-request="if(event.detail.successful) this.reset()">
+
+                <div class="form-row">
+                    <label>Référence *</label>
+                    <input type="text" name="reference" required placeholder="Ex: PAP-A4-500">
+                </div>
+
+                <div class="form-row">
+                    <label>Désignation *</label>
+                    <input type="text" name="designation" required placeholder="Ex: Ramette papier A4 80g (500 feuilles)">
+                </div>
+
+                <div class="form-row">
+                    <label>Prix unitaire (€) *</label>
+                    <input type="number" name="prix_unitaire" required min="0" step="0.01" placeholder="4.99">
+                </div>
+
+                <div class="form-row">
+                    <label>Stock initial</label>
+                    <input type="number" name="stock" min="0" value="0">
+                </div>
+
+                <button type="submit" class="btn-primary">Créer l'article</button>
+            </form>
+        </section>
+
+        <section class="card-section">
+            <h2 class="section-title">Catalogue</h2>
+            {% include "_articles_table.html" %}
+        </section>
+    </div>
+{% endblock %}

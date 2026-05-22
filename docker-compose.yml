@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+
+  # ── Base de données Recette ──────────────────────
+  db-recette:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: supplychain_rct
+    volumes:
+      - pgdata_rct:/var/lib/postgresql/data
+    networks:
+      - recette-net
+
+  # ── Appli Recette ────────────────────────────────
+  app-recette:
+    build: .
+    ports:
+      - "8001:8000"
+    environment:
+      DATABASE_URL: postgresql://user:password@db-recette:5432/supplychain_rct
+      ENV: recette
+    depends_on:
+      - db-recette
+    networks:
+      - recette-net
+
+  # ── Base de données Prod ─────────────────────────
+  db-prod:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: supplychain_prod
+    volumes:
+      - pgdata_prod:/var/lib/postgresql/data
+    networks:
+      - prod-net
+
+  # ── Appli Prod ───────────────────────────────────
+  app-prod:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://user:password@db-prod:5432/supplychain_prod
+      ENV: prod
+    depends_on:
+      - db-prod
+    networks:
+      - prod-net
+
+volumes:
+  pgdata_rct:
+  pgdata_prod:
+
+networks:
+  recette-net:
+    driver: bridge
+  prod-net:
+    driver: bridge

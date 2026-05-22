@@ -1,0 +1,28 @@
+<div id="articles-list" class="data-table-wrapper">
+    {% if articles %}
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Référence</th>
+                <th>Désignation</th>
+                <th>Prix unitaire</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in articles %}
+            <tr>
+                <td><strong>{{ a.reference }}</strong></td>
+                <td>{{ a.designation }}</td>
+                <td>{{ "%.2f"|format(a.prix_unitaire) }} €</td>
+                <td>{{ a.stock }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        Aucun article au catalogue. Créez le premier avec le formulaire à gauche.
+    </div>
+    {% endif %}
+</div>
