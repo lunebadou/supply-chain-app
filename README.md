@@ -53,6 +53,3 @@ Créer commande → Valider → Réceptionner → Facturer
 - **Recette** : port `8001`
 - **Prod** : port `8000`
 
-test test
-hhuhuujiujiiijij
-njnjjnjjjjjjkjjkjkj,kk
