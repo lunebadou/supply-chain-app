@@ -53,14 +53,4 @@ Créer commande → Valider → Réceptionner → Facturer
 - **Recette** : port `8001`
 - **Prod** : port `8000`
 
-Modif fait pour tester ngork
-hhiiijijiiiiiiiiiiiiiiii
-bfcddtyhuhuhug
-okikokllkllllllll
-
-jjjkkkklkokokokokkkjjhhhhh
-
-
-,,;ql;sldlml:v;;f;;k,k,d;,dd;v,d;,
-,,kkkklk,k,;,;k;lklkokklklkklk
-
+test test
