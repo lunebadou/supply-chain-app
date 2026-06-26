@@ -56,4 +56,3 @@ Créer commande → Valider → Réceptionner → Facturer
 test test
 hhuhuujiujiiijij
 njnjjnjjjjjjkjjkjkj,kk
-k,kk,k
