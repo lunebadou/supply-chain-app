@@ -3,10 +3,11 @@
 API FastAPI pour la gestion des achats : fournisseurs, articles, bons de commande et facturation.
 
 ## Stack
+
 - Python 3.11 + FastAPI
 - PostgreSQL
 - Docker + Docker Compose
-- Prometheus metrics exposées sur `/metrics`
+- Métriques Prometheus exposées sur `/metrics`
 
 ## Lancer en local
 
@@ -17,7 +18,7 @@ cp .env.example .env
 # Installer les dépendances
 pip install -r requirements.txt
 
-# Lancer l'app
+# Lancer l'application
 uvicorn app.main:app --reload --port 8001
 ```
 
@@ -32,9 +33,9 @@ docker-compose up -d --build
 
 | Méthode | Route | Description |
 |---------|-------|-------------|
-| GET | /health | Santé de l'app |
-| GET/POST | /fournisseurs | Gestion fournisseurs |
-| GET/POST | /articles | Gestion articles |
+| GET | /health | Santé de l'application |
+| GET/POST | /fournisseurs | Gestion des fournisseurs |
+| GET/POST | /articles | Gestion des articles |
 | POST | /commandes | Créer un bon de commande |
 | PUT | /commandes/{id}/valider | Valider une commande |
 | PUT | /commandes/{id}/reception | Réceptionner une commande |
@@ -44,17 +45,9 @@ docker-compose up -d --build
 
 ## Workflow Achat
 
-```
 Créer commande → Valider → Réceptionner → Facturer
-```
 
 ## Environnements
 
 - **Recette** : port `8001`
 - **Prod** : port `8000`
-
-test
-test
-
-
-
