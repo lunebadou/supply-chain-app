@@ -1,3 +1,6 @@
+### 2. README pour le dépôt `supply-chain-app`
+
+```markdown
 # Supply Chain - Module Achat
 
 API FastAPI pour la gestion des achats : fournisseurs, articles, bons de commande et facturation.
@@ -7,7 +10,6 @@ API FastAPI pour la gestion des achats : fournisseurs, articles, bons de command
 - Python 3.11 + FastAPI
 - PostgreSQL
 - Docker + Docker Compose
-- Métriques Prometheus exposées sur `/metrics`
 
 ## Lancer en local
 
@@ -18,36 +20,9 @@ cp .env.example .env
 # Installer les dépendances
 pip install -r requirements.txt
 
-# Lancer l'application
+# Lancer l'app
 uvicorn app.main:app --reload --port 8001
-```
-
-## Lancer avec Docker
-
-```bash
-# Recette (port 8001) + Prod (port 8000)
+Lancer avec DockerBash# Recette (port 8001) + Prod (port 8000)
 docker-compose up -d --build
-```
-
-## Endpoints principaux
-
-| Méthode | Route | Description |
-|---------|-------|-------------|
-| GET | /health | Santé de l'application |
-| GET/POST | /fournisseurs | Gestion des fournisseurs |
-| GET/POST | /articles | Gestion des articles |
-| POST | /commandes | Créer un bon de commande |
-| PUT | /commandes/{id}/valider | Valider une commande |
-| PUT | /commandes/{id}/reception | Réceptionner une commande |
-| POST | /commandes/{id}/facturer | Générer une facture |
-| GET | /metrics | Métriques Prometheus |
-| GET | /docs | Swagger UI |
-
-## Workflow Achat
-
-Créer commande → Valider → Réceptionner → Facturer
-
-## Environnements
-
-- **Recette** : port `8001`
-- **Prod** : port `8000`
+Endpoints principauxMéthodeRouteDescriptionGET/healthSanté de l'appGET/POST/fournisseursGestion fournisseursGET/POST/articlesGestion articlesPOST/commandesCréer un bon de commandePUT/commandes/{id}/validerValider une commandePUT/commandes/{id}/receptionRéceptionner une commandePOST/commandes/{id}/facturerGénérer une factureGET/docsSwagger UIWorkflow AchatCréer commande → Valider → Réceptionner → Facturer
+EnvironnementsRecette : port 8001Prod : port 8000
